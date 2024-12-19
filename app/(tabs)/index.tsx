@@ -1,19 +1,27 @@
 import React from 'react'
-import { Text, View, StyleSheet, TextInput } from 'react-native';
+import { Text, View, StyleSheet, Dimensions} from 'react-native';
+import { FlashList } from "@shopify/flash-list";
+
+import Input from '@/components/Input';
 
 export default function Index() {
 
-  const [text, setText] = React.useState('');
+  const songs = [
+    {title:"Bit Better"},
+    {title:"Back to Back"},
+    {title:"YNBA"},
+    {title:"Lightburst"},
+    {title:"Getting Time"},
+    {title:"New Years"}
+  ];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Setlists go here!</Text>
 
-
-      <TextInput
-        style={styles.input}
-        onChangeText={newText => setText(newText)}
-        value={text}
+      <FlashList
+        data={songs}
+        renderItem={({item}) => <Input defaultText={item.title}/>}
+        estimatedItemSize={10}
       />
 
     </View>
@@ -23,19 +31,9 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#25292e',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#25292e'
   },
   text: {
     color: '#fff',
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    color: '#fff',
-    borderColor: '#fff'
   }
 });
