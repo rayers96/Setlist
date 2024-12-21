@@ -14,20 +14,12 @@ export default function Index() {
     { title: "New Years" }
   ];
 
-  const [editMode, setEditMode] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Button
-        onPress={() => setEditMode(!editMode)}
-        title={editMode ? "Save" : "Edit"}
-        color={editMode ? "#8FBC8F" : "#F08080"}
-        accessibilityLabel={editMode ? "Save this setlist" : "Edit this setlist"}
-      />
-
       <FlatList 
         data={songs}
-        renderItem={({ item }) => <Input defaultText={item.title} editMode={editMode} />}
+        renderItem={({ item }) => <Input defaultText={item.title}/>}
       />
     </View>
   );
